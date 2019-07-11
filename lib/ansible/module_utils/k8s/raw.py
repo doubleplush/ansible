@@ -112,7 +112,7 @@ class KubernetesRawModule(KubernetesAnsibleModule):
             if not HAS_K8S_CONFIG_HASH:
                 self.fail_json(msg=missing_required_lib("openshift >= 0.7.2", reason="for append_hash"),
                                exception=K8S_CONFIG_HASH_IMP_ERR)
-        if self.params['merge_type']:
+        if self.params.get('merge_type'):
             if LooseVersion(self.openshift_version) < LooseVersion("0.6.2"):
                 self.fail_json(msg=missing_required_lib("openshift >= 0.6.2", reason="for merge_type"))
         if self.params.get('apply') is not None:
